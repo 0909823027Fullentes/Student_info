@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="logo-box">
+            <img src="logo/cdm-removebg-preview.png" alt="CDM Logo" class="logo">
+        </div>
+        <h1>Student Form</h1>
+        <h2>Register</h2>
+        <hr>
+
+        <form id="studentForm">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name">
+
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" placeholder="Enter your age">
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email">
+
+                <label for="course">Course:</label>
+                <input type="text" id="course" name="course" placeholder="Select your course" list="courses">
+                <datalist id="courses">
+                    <option value="Bachelor of Science in Information Technology">
+                    <option value="Bachelor of Science in Computer Science">
+                    <option value="Bachelor of Elementary Education">
+                    <option value="Bachelor of Secondary Education (Science)">
+                    <option value="Bachelor of Technology and Livelihood Education">
+                    <option value="Bachelor of Science in Entrepreneurship">
+                </datalist>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('studentForm');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            
+            const name = document.getElementById('name');
+            const age = document.getElementById('age');
+            const email = document.getElementById('email');
+            const course = document.getElementById('course');
+ 
+            let isValid = true;
+            [name, age, email, course].forEach(input => {
+                if (input.value.trim() === '') {
+                    input.classList.add('error');
+                    isValid = false;
+                }
+            });
+
+            if (!isValid) {
+                alert('⚠️ Please fill out all fields before submitting.');
+                return;
+            }
+
+           
+            alert(`🎓 Registration Successful!\n\nName: ${name.value}\nAge: ${age.value}\nEmail: ${email.value}\nCourse: ${course.value}`);
+
+            
+            form.reset();
+        });
+    </script>
+</body>
+</html>
